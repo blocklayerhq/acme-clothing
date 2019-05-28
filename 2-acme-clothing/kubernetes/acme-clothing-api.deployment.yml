@@ -1,0 +1,25 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: acme-clothing-api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: acme-clothing-api
+    spec:
+      containers:
+        - image: 125635003186.dkr.ecr.eu-west-3.amazonaws.com/acme-clothing-api:latest
+          name: api
+          command: ["npm", "run", "start:server"]
+          ports:
+            - name: api-port
+              containerPort: 3011
+          env:
+      initContainers:
+        - name: circuit-init
+          image: 125635003186.dkr.ecr.eu-west-3.amazonaws.com/acme-clothing-api:latest
+          command: ["npm", "run", "setup"]
+          env:
