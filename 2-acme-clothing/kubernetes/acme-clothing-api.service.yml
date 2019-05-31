@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: acme-clothing-api
+  namespace: acme-clothing-microstaging-4242
 spec:
   type: NodePort
   selector:

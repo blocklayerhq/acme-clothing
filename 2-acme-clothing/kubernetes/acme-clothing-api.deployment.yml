@@ -3,6 +3,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: acme-clothing-api
+  namespace: acme-clothing-microstaging-4242
 spec:
   replicas: 1
   template:
@@ -19,7 +20,7 @@ spec:
               containerPort: 3011
           env:
       initContainers:
-        - name: circuit-init
+        - name: setup
           image: 125635003186.dkr.ecr.eu-west-3.amazonaws.com/acme-clothing-api:latest
           command: ["npm", "run", "setup"]
           env:

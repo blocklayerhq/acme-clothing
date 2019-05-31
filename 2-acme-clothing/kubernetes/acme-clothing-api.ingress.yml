@@ -2,29 +2,19 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: circuit
+  name: acme-clothing-api
+  namespace: acme-clothing-microstaging-4242
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: 
-    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
-    certmanager.k8s.io/acme-http01-edit-in-place: "true"
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/subnets: subnet-01f5726e0a68f24b6,subnet-03b0d4de6cdf50bb3,subnet-048642c9b828e6f23
+    alb.ingress.kubernetes.io/tags: ManagedBy=Blocklayer,blocklayer_pipeline=acme-clothing-microstaging-4242
 spec:
-  tls:
-    - hosts:
-        - circuit-dex.staging.codeamp-gke.infralabs.io
-        - circuit.staging.codeamp-gke.infralabs.io
-      secretName: circuit-tls
   rules:
-    - host: circuit-dex.staging.codeamp-gke.infralabs.io
+    - host: api.acme-clothing-microstaging-4242.infralabs.io
       http:
         paths:
           - path: /*
             backend:
-              serviceName: circuit
-              servicePort: 5556
-    - host: circuit.staging.codeamp-gke.infralabs.io
-      http:
-        paths:
-          - path: /*
-            backend:
-              serviceName: circuit
-              servicePort: 3011
+              serviceName: acme-clothing-api
+              servicePort: api-port

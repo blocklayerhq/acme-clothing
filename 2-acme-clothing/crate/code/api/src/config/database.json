@@ -8,10 +8,10 @@
     "seederStorage": "sequelize"
   },
   "production": {
-    "username": "root",
-    "password": null,
+    "username": "acme_clothing_api",
+    "password": "pqowieuryt",
     "database": "crate",
-    "host": "127.0.0.1",
+    "host": "db",
     "dialect": "mysql",
     "seederStorage": "sequelize"
   }

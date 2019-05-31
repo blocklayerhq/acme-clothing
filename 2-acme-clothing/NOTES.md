@@ -13,6 +13,17 @@ echo create database crate | docker-compose exec db mysql -P foobar
 
 ### Setup EKS
 
+	- Install eksctl from eksctl.io
+	- Create cluster + worker nodes with eksctl
+	- Authenticate to cluster
+		- Dowload custom kubectl binary from S3 bucket as instructed by AWS docs
+		- Download custom aws-iam-authenticator binary from S3 bucket
+	- Setup ingress with ALB
+		- https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/walkthrough/echoserver/
+	- Deploy Acme Clothing API kubernetes files (including ingress)
+
+
+
 ### Setup ECR
 
 Each repository has to be created manually in AWS console. Where should this be automated? Pipeline or infra setup
@@ -38,11 +49,5 @@ Each repository has to be created manually in AWS console. Where should this be 
 
 ### Deploy API to Kubernetes
 
-	- Dowload custom kubectl binary from S3 bucket as instructed by AWS docs
-	- Download custom aws-iam-authenticator binary from S3 bucket
 
-
-	- Setup ingress with ALB
-		- https://aws.amazon.com/blogs/opensource/kubernetes-ingress-aws-alb-ingress-controller/
-		- https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/walkthrough/echoserver/
 
