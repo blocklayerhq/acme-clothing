@@ -16,8 +16,11 @@ echo create database crate | docker-compose exec db mysql -P foobar
 	- Install eksctl from eksctl.io
 	- Create cluster + worker nodes with eksctl
 	- Authenticate to cluster
-		- Dowload custom kubectl binary from S3 bucket as instructed by AWS docs
-		- Download custom aws-iam-authenticator binary from S3 bucket
+		- https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html
+			- Dowload custom kubectl binary from S3 bucket as instructed by AWS docs
+			- Download custom aws-iam-authenticator binary from S3 bucket
+		- WARNING: only the IAM user which created the cluster can connect to it!
+			- https://docs.aws.amazon.com/eks/latest/userguide/troubleshooting.html#unauthorized
 	- Setup ingress with ALB
 		- https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/walkthrough/echoserver/
 	- Deploy Acme Clothing API kubernetes files (including ingress)
