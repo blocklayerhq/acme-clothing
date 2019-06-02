@@ -2,6 +2,9 @@
 import { Server } from 'http'
 import Express from 'express'
 
+const serverless = require('serverless-http')
+
+
 // App Imports
 import loadModules from './setup/server/load-modules'
 import loadRoutes from './setup/server/load-routes'
@@ -18,4 +21,10 @@ loadModules(app)
 loadRoutes(app)
 
 // Start Server
-startServer(server)
+//startServer(server)
+
+
+//module.exports = app;
+export default app;
+export const handler = serverless(app);
+//module.exports.handler = serverless(app);
