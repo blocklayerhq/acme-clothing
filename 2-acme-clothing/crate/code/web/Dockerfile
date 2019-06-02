@@ -6,10 +6,9 @@ run apk add gcc g++ make
 run apk add python
 run ["npm", "install", "-g", "netlify-cli"]
 copy ./package.json /src/package.json
-workdir /src
-run ["npm", "install"]
+run cd /src && npm install @babel/cli
+run cd /src && npm install
 copy . /src/
-run ["npm", "install"]
-run ["npm", "install", "@babel/cli"]
-run ["npm", "run", "build:client"]
-cmd ["netlify", "deploy", "--prod", "--dir=/src/build"]
+run cd /src && APP_URL="" npm run build:client
+cmd ["netlify", "deploy", "--prod", "--dir=/src", "--functions", "/src/functions"]
+workdir /src
