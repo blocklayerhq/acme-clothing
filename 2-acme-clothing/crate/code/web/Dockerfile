@@ -11,8 +11,10 @@ run cd /src && npm install @babel/cli
 run cd /src && npm install
 copy . /src/
 # Prod:
-run cd /src && npm run build:client:prod && APP_URL="" npm run build:server:prod && netlify-lambda build build/
+# run cd /src && npm run build:client:prod && npm run build:server:prod && netlify-lambda build build/
 # Dev:
-# run cd /src && npm run build:client && netlify-lambda build src/
-cmd ["netlify", "deploy", "--prod", "--dir", "public", "--functions", "functions"]
+#run cd /src && npm run build:client && netlify-lambda build src/
+run cd /src && npm run build:client
+#cmd ["netlify", "deploy", "--prod", "--dir", "public", "--functions", "functions"]
 workdir /src
+cmd ["netlify", "deploy", "--prod", "--dir", "public"]

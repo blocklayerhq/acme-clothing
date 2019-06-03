@@ -8,10 +8,10 @@
     "seederStorage": "sequelize"
   },
   "production": {
-    "username": "acme_clothing_api",
+    "username": "bl-4242",
     "password": "pqowieuryt",
-    "database": "crate",
-    "host": "db",
+    "database": "acme_clothing_microstaging_4242",
+    "host": "acme-clothing.cluster-cvlnkuwkccmq.eu-west-3.rds.amazonaws.com",
     "dialect": "mysql",
     "seederStorage": "sequelize"
   }
