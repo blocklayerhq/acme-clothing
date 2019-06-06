@@ -33,7 +33,7 @@ const Home = (props) => (
     }}>
       {/* SEO */}
       <Helmet>
-        <title>Monthly supply of clothes and accessories for Men and Women - Crate</title>
+        <title>Monthly and yearly supply of clothes and accessories for Men, Women and Children! - Crate</title>
       </Helmet>
 
       {/* Content */}
