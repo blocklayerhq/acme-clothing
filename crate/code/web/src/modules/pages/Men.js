@@ -53,7 +53,7 @@ const Men = (props) => (
       <H2 font="secondary">Monthly crates for Men</H2>
 
       <H5 style={{ marginTop: '0.5em' }}>
-        Save time. Look great. The personal styling service customized to your fit, lifestyle & spending preferences.
+        Save time. Look fucking great. The personal styling service customized to your fit, lifestyle & spending preferences.
       </H5>
 
       {/* Call to action */}
