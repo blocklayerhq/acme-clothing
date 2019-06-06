@@ -1,5 +1,3 @@
-alert('boo')
-
 // Imports
 import { Server } from 'http'
 import Express from 'express'
