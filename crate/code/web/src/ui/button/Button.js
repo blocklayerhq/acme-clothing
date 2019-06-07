@@ -26,7 +26,7 @@ const Button = (props) => {
           cursor: pointer;
           outline: none;
           font-size: 1em;
-          color: ${ theme !== 'none' ? red : red };
+          color: ${ theme !== 'none' ? white : black };
           box-shadow: ${ theme !== 'none' ? level2 : 'none' };
           background-color: ${ theme === 'primary' ? primary : theme === 'secondary' ? secondary : 'transparent' };
           background-image: ${ theme === 'primary' ? primaryGradient : theme === 'secondary' ? secondaryGradient : 'none' };
