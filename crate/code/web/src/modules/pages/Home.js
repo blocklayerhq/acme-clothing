@@ -41,7 +41,7 @@ const Home = (props) => (
         <H1 font="secondary" style={{ textShadow: textLevel1 }}>Crate</H1>
 
         <H4 style={{ textShadow: textLevel1, marginTop: '0.5em' }}>
-          Your monthly subscription of trendy clothes and accessories
+          Your SUPER awesome monthly subscription of trendy clothes and accessories
         </H4>
 
         {/* Call to action */}
@@ -51,7 +51,7 @@ const Home = (props) => (
                 <Button theme="secondary" style={{ marginTop: '1em' }}>Get Subscription</Button>
               </Link>
             : <Link to={userRoutes.signup.path}>
-                <Button theme="secondary" style={{ marginTop: '1em' }}>Get Started</Button>
+                <Button theme="secondary" style={{ color: 'red', marginTop: '1em' }}>Get Started</Button>
               </Link>
         }
       </GridCell>
