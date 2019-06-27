@@ -1,0 +1,139 @@
+// FIXME: Eventually, this should be accessible as `pipeline.name`
+input name {
+    type = "string"
+}
+
+///
+/// CODEAMP BACKEND
+///
+
+input backend_src {
+    type = "fstree"
+    value = fetch_backend.tree
+}
+
+task fetch_backend {
+    op = "git.clone"
+    src = "https://github.com/codeamp/circuit.git"
+}
+
+task build_backend {
+    op = "docker.build"
+    src = input.backend_src
+}
+
+input gcp_service_key {
+    type = "string"
+}
+
+task push_backend {
+    op = "gcr.push"
+    image = build_backend.image
+    name = "circuit"
+    # FIXME: Since we're building from an input, we shouldn't use the task's git
+    # commit as a tag
+    tag = fetch_backend.commit
+    project = "deploy-test-231020"
+    service-key = input.gcp_service_key
+}
+
+input kubernetes_specs {
+    type = "fstree"
+}
+
+task templatize_backend {
+    op = "kubernetes.kustomize"
+    src = input.kubernetes_specs
+    build-path = "overlays/staging"
+    image = push_backend.full-name
+}
+
+task deploy_backend {
+    op = "gke.deploy"
+    src = templatize_backend.tree
+    project = "deploy-test-231020"
+    service-key = input.gcp_service_key
+    kubernetes-cluster = "cluster"
+    region = "us-west2"
+    // FIXME: Use interpolation
+    namespace = input.name
+}
+
+///
+/// ACME CLOTHING STORE FRONTEND
+///
+
+input frontend_src {
+    type = "fstree"
+    value = cd_frontend.tree
+}
+
+task fetch_frontend {
+    op = "git.clone"
+    src = "https://github.com/atulmy/crate"
+}
+
+task cd_frontend {
+    op = "fs.subtree"
+    src = fetch_frontend.tree
+    path = "code/web"
+}
+
+task add_web_node_env {
+    op = "fs.write_text"
+    src = input.frontend_src
+    path = ".env"
+    text = "NODE_ENV=production"
+}
+
+// FIXME: this would go away with interpolation and custom domains
+input frontend_url {
+    type = "string"
+}
+
+task add_web_self_url {
+    op = "fs.write_text"
+    src = add_web_node_env.tree
+    path = ".env"
+    text = input.frontend_url
+    append = "yes"
+}
+
+// FIXME: this should come from backend deploy outputs
+input api_url {
+    type = "string"
+}
+
+task add_web_api_url {
+    op = "fs.write_text"
+    src = add_web_self_url.tree
+    path = ".env"
+    text = input.api_url
+    append = "yes"
+}
+
+task build_frontend {
+    op = "npm.build"
+    src = add_web_api_url.tree
+    build_script = "build:client"
+    build_dir = "public"
+}
+
+input netlify_site {
+    type = "string"
+}
+
+input netlify_auth_token {
+    type = "string"
+}
+
+task deploy_frontend {
+    op = "netlify.deploy"
+    src = build_frontend.tree
+    // FIXME: use interpolation
+    name = input.name
+    create-site = "true"
+    account = "blocklayer"
+    // FIXME: Need interpolation to set up custom-domain
+    auth-token = input.netlify_auth_token
+}
