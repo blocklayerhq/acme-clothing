@@ -12,5 +12,6 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           api_key: "${{ secrets.BL_API_KEY }}"
           pipeline: "acme-clothing-pr-${PR_NUMBER}"
+          workspace: acme-corp
           clone: acme-clothing-staging
           inputs: -w acme-corp -o environment=acme-clothing-pr-${PR_NUMBER} -o git_ref=${{ github.sha }}
