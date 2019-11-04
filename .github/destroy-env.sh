@@ -1,7 +1,7 @@
 #!/bin/bash
 
 env_name=$1
-authorized_env_prefix='demo-ecs'
+authorized_env_prefix='acme-clothing'
 
 cleanup_bl() {
     bl line rm "$env_name" -w acme-corp
