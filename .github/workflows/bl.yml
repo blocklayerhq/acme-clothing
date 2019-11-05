@@ -6,6 +6,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@master
       - name: Deploy with Blocklayer
         uses: blocklayerhq/actions@alpha-2
         with:
