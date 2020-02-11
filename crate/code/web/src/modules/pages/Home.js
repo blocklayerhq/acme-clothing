@@ -41,7 +41,7 @@ const Home = (props) => (
         <H1 font="secondary" style={{ textShadow: textLevel1 }}>Crate</H1>
 
         <H4 style={{ textShadow: textLevel1, marginTop: '0.5em' }}>
-          Your awesome subscription of trendy clothes for the rain
+          Your subscription of trendy clothes.
         </H4>
 
         {/* Call to action */}
