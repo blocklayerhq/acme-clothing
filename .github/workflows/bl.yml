@@ -8,11 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Deploy with Blocklayer
-        uses: blocklayerhq/actions@alpha-2
+        uses: blocklayerhq/actions@alpha-3-push
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          api_key: "${{ secrets.BL_API_KEY }}"
-          pipeline: "acme-clothing-pr-${PR_NUMBER}"
-          workspace: acme-corp
-          clone: acme-clothing-staging
-          inputs: -w acme-corp -o name=acme-clothing-pr-${PR_NUMBER} -o src=@./
+          bl_api_key: "${{ secrets.BL_API_KEY }}"
+          bl_domain : "acme.infralabs.io"
+          bl_target : "env.devInfra.config.monorepo"
