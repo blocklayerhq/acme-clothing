@@ -6,11 +6,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Deploy with Blocklayer
-        uses: blocklayerhq/actions@alpha-3-push
+      - name: Blocklayer webhook integration
+        uses: blocklayerhq/actions@alpha-3-ingest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           bl_api_key: "${{ secrets.BL_API_KEY }}"
           bl_domain : "acme.infralabs.io"
-          bl_target : "env.devInfra.config.monorepo"
+          bl_target : "env.devInfra.input.monorepoEvents"
