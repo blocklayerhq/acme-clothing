@@ -12,4 +12,4 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           bl_api_key: "${{ secrets.BL_API_KEY }}"
           bl_domain : "acme.infralabs.io"
-          bl_target : "env.devInfra.input.monorepoEvents"
+          bl_target : "env.devInfra.input.githubEvents"
