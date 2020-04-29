@@ -1,13 +1,16 @@
 name: Blocklayer
 
-on: pull_request
+on:
+  pull_request:
+    branches:
+      - master
 
 jobs:
-  deploy:
+  webhook:
     runs-on: ubuntu-latest
     steps:
       - name: Blocklayer webhook integration
-        uses: blocklayerhq/actions@alpha-3-ingest
+        uses: blocklayerhq/actions@alpha-3
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           bl_api_key: "${{ secrets.BL_API_KEY }}"
