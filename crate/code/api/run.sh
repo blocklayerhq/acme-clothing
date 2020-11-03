@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -exu
 
 > src/config/database.json cat << EOF
 {
@@ -15,4 +16,5 @@
 }
 EOF
 
+npm run setup
 npm run start:prod
