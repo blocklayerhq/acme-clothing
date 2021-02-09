@@ -16,5 +16,5 @@ set -exu
 }
 EOF
 
-npm run setup
+npm run setup:db
 npm run start:prod
